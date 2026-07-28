@@ -4,7 +4,7 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 
 ## Linguagem
 <img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=java">
-<!--<img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=cs">-->
+<img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=cs">
 
 
 ## Implementações
