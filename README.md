@@ -1,7 +1,6 @@
-# Estruturas de Dados I e II
+# Estrutura de Dados Lineares e Não Lineares
 
-Este repositório contém as implementações, algoritmos e exercícios desenvolvidos durante a disciplina de **Estrutura de Dados Lineares** e as que virão a ser desenvolvidas na disciplina de **Estrutura de Dados Não Lineares** do curso de **Tecnologia em Análise e Desenvolvimento de Sistemas do IFRN**. O foco do projeto é o estudo da **eficiência de algoritmos**, **manipulação de memória** e **tipos abstratos de dados**.
-
+Este repositório contém as implementações, algoritmos e exercícios desenvolvidos durante as disciplinas de **Estrutura de Dados Lineares** e **Estrutura de Dados Não Lineares** do curso de **Análise e Desenvolvimento de Sistemas (IFRN)**.
 ## Linguagens utilizadas
 <img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=java"> <img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=cs">
 
