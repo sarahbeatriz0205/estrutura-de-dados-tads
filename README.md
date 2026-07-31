@@ -20,7 +20,7 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 - **[Método de ordenação Tree Sort implementado com Árvore Binária de Pesquisa](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_binaria/TreeSort.java)**
 
 ## Implementações em C#
-- **[TAD Árvore Binária De Pesquisa implementado com nós](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_csharp/trabalho_arvore/binaria/ArvoreBinariaPesquisa.cs)**
+- **[TAD Árvore Binária De Pesquisa implementado com nós](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/blob/main/exercicios/implementacoes_csharp/ArvoreBinariaPesquisa/Program.cs)**
 
 ## Anotações
 - **[TAD Pilha](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_pilha)**
