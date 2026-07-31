@@ -1,1 +1,44 @@
+## ----------------------------------------------------
+## ARQUIVOS COMPILADOS (Pastas geradas pelo C# e Java)
+## ----------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
 *.class
+
+## ----------------------------------------------------
+## CONFIGURAÇÕES LOCAIS E CACHE DO VISUAL STUDIO / RIDER
+## ----------------------------------------------------
+.vs/
+.idea/
+*.sln.iml
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## ----------------------------------------------------
+## CONFIGURAÇÕES DO VS CODE (Mantém arquivos de equipe)
+## ----------------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+## ----------------------------------------------------
+## SEGURANÇA E AMBIENTE (Variáveis locais)
+## ----------------------------------------------------
+.env
+
+## ----------------------------------------------------
+## LIXOS DO SISTEMA OPERACIONAL (Windows e macOS)
+## ----------------------------------------------------
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+.SpellCheck
