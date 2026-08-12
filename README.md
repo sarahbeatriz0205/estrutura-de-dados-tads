@@ -2,7 +2,7 @@
 
 Este repositório contém as implementações, algoritmos e exercícios desenvolvidos durante as disciplinas de **Estrutura de Dados Lineares** e **Estrutura de Dados Não Lineares** do curso de **Análise e Desenvolvimento de Sistemas (IFRN)**.
 ## Linguagens utilizadas
-<img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=java"> <img style="height: 60px;" alt="python logo" src="https://skillicons.dev/icons?i=cs">
+<img style="height: 60px;" alt="java logo" src="https://skillicons.dev/icons?i=java"> <img style="height: 60px;" alt="csharp logo" src="https://skillicons.dev/icons?i=cs">
 
 
 ## Implementações em Java
@@ -22,13 +22,17 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 - **[TAD Árvore Binária De Pesquisa implementado com nós](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/blob/main/exercicios/implementacoes_csharp/ArvoreBinariaPesquisa/Program.cs)**
 
 ## Anotações
-- **[TAD Pilha](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_pilha)**
-- **[TAD Fila](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/aulas/aulas_fila/codigo/FilaArray.java)**
-- **[TAD Vetor](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_vetor)**
-- **[TAD Lista](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_lista)**
-- **[TAD Sequência](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_sequencia)**
-- **[TAD Árvore](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_arvore)**
-- **[TAD Fila de prioridade](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_fila_de_prioridade)**
-- **[TAD Heap](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_heap)**
-- **[TAD Dicionário](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_dicionarios)**
-- **[Skiplist](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/aulas_skiplist)**
+### EDL
+- **[TAD Pilha](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_pilha)**
+- **[TAD Fila](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/aulas/edl/aulas_fila/codigo/FilaArray.java)**
+- **[TAD Vetor](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_vetor)**
+- **[TAD Lista](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_lista)**
+- **[TAD Sequência](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_sequencia)**
+- **[TAD Árvore](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_arvore)**
+- **[TAD Fila de prioridade](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_fila_de_prioridade)**
+- **[TAD Heap](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_heap)**
+- **[TAD Dicionário](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_dicionarios)**
+- **[Skiplist](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_skiplist)**
+
+### EDNL
+_Nada ainda_

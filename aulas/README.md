@@ -1,0 +1,1 @@
+## Anotações das aulas de Estrutura de Dados Lineares e Não Lineares
