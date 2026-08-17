@@ -35,4 +35,4 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 - **[Skiplist](https://github.com/sarahbeatriz0205/estrutura-dados-tads/tree/main/aulas/edl/aulas_skiplist)**
 
 ### EDNL
-_Nada ainda_
+- **[Árvore AVL](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/tree/main/aulas/ednl/aulas_arvore_avl)**
