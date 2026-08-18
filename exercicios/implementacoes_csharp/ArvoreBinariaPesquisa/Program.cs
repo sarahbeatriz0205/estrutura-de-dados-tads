@@ -69,12 +69,12 @@ class Program {
 }
 
 public class ArvoreBinariaPesquisa {
-    public No Raiz;
+    public No? Raiz;
     public int Size;
     public List<No> Nos;
 
-    public ArvoreBinariaPesquisa(int Elem) {
-        Raiz = new No(null, null, null, Elem);
+    public ArvoreBinariaPesquisa(No? Raiz) {
+        this.Raiz = Raiz;
         Size = 1;
         Nos = [Raiz]; 
     }
