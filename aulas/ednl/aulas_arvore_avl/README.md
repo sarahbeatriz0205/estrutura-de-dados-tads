@@ -32,3 +32,29 @@ public class NoArvore {
 - Descobrir a altura para calcular o FB é O(n), o que não pode
 - Se for uma inserção, deve-se verificar se o FB do antecessor for igual a 0 e se for verdadeiro, o recálculo para
 - Se for uma remoção, deve-se verificar se o FB do antecessor é diferente de 0 e se for verdadeiro, o recálculo para
+
+> Se transformará em método na árvore
+
+## Rotações
+- Operação que altera o balanceamento de uma árvore, mantendo a sequência de percurso em ordem
+- Modifica referências
+- Quando uma árvore ou subárvore tem um fator de balanceamento FB=-2, deve-se fazer uma rotação a esquerda
+- Quando uma árvore ou subárvore tem um fator de balanceamento FB=2, deve-se fazer uma rotação a direita
+
+### Tipos de rotações
+#### Esquerda Simples e Direita Simples
+- O pai do nó desbalanceado vira pai do seu filho e o nó desbalanceado vira filho do seu filho
+
+#### Esquerda Dupla
+- Primeiro se faz uma rotação simples direita no filho do nó direito e depois faz uma rotação simples esquerda no nó originalmente desbalanceado
+- Se o fator de balanceamento do nó desbalanceado for negativo e o do seu filho direito for positivo (diferentes), rotação dupla a esquerda
+  
+#### Direita Dupla
+- Primeiro se faz uma rotação simples esquerda no filho do nó esquerdo e depois faz uma rotação simples direita no nó originalmente desbalanceado
+- Se o fator de balanceamento do nó desbalanceado for negativo e o do seu filho esquerdo for positivo (diferentes), rotação dupla a direita
+
+## Atualização do FB após as rotações
+- Em uma rotação simples, se altera apenas dois FB, que é o nó originalmente desbalanceado e um dos seus filhos, onde para saber qual é deve-se observar:
+> FB = -2 = FB do filho direito muda
+
+> FB = 2 = FB do filho esquerdo muda
