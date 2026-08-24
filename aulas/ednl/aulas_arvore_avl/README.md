@@ -58,3 +58,17 @@ public class NoArvore {
 > FB = -2 = FB do filho direito muda
 
 > FB = 2 = FB do filho esquerdo muda
+
+## Atualização do FB após as rotações
+### Após a rotação Esquerda  
+> FB_B_novo= FB_B + 1 - min(FB_A, 0);
+
+> FB_A_novo= FB_A + 1 +max(FB_B_novo, 0);
+
+### Após a rotação Direita 
+> FB_B_novo= FB_B - 1 - max(FB_A, 0);
+
+> FB_A_novo= FB_A - 1 + min(FB_B_novo, 0);
+
+## Inserção
+- Insere normalmente como em uma ABP e verifica se algum nó ficou desbalanceado (se tiver, chama o método ```rebalancear()```)
