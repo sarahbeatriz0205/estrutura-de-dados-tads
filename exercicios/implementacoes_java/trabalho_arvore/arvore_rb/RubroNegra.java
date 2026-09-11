@@ -28,32 +28,69 @@ public class RubroNegra extends ArvoreBinariaDePesquisa{
         critério IV apenas fazendo a re-coloração de
         t(Rubro),u(Negro) e w(Negro)
     */
-    private void executaCasoDoisPosInsercao(NoRubroNegro no){
-        NoRubroNegro paiDeNo = no.getPai();
-        NoRubroNegro avoDeNo = paiDeNo.getPai();
-        NoRubroNegro irmaoDoPai;
-        if (paiDeNo.getElemento() < avoDeNo.getElemento()){
-            irmaoDoPai = avoDeNo.getFilhoDireito();
+   public void casosInsercao(NoRubroNegro no){
+        if (no == null || no.getPai() == null) {
+            return;
+        }
+        
+        NoRubroNegro pai = no.getPai();
+        NoRubroNegro avo = pai.getPai();
+        NoRubroNegro tio;
+        if (pai.getElemento() < avo.getElemento()){ tio = avo.getFilhoDireito(); }
+        tio = avo.getFilhoEsquerdo();
+
+        // caso 1
+        if (no.getPai().getCor() == false){
+            return;
+        }
+        // caso 2
+        else if (pai.getCor() == true && tio.getCor() == true) {
+            executaCasoDoisPosInsercao(no);
         }
         else {
-            irmaoDoPai = avoDeNo.getFilhoEsquerdo();
+            executaCasoTresPosInsercao(no);
+        }
+   }
+
+    private void executaCasoDoisPosInsercao(NoRubroNegro no){
+        if (no == null || no.getPai() == null || no.getPai().getCor() == false) {
+            return;
         }
 
-        if (paiDeNo.getElemento() == 1 && avoDeNo.getCor() == 0 && irmaoDoPai.getCor() == 1){
-            avoDeNo.setCor(1);
-            irmaoDoPai.setCor(0);
-            paiDeNo.setCor(0);
+        NoRubroNegro pai = no.getPai();
+        NoRubroNegro avo = pai.getPai();
+        NoRubroNegro tio;
+
+        if (pai.getElemento() < avo.getElemento()){ 
+            tio = avo.getFilhoDireito(); 
         }
-        else if (paiDeNo.getElemento() == 1 && avoDeNo.getCor() == 1 && irmaoDoPai.getCor() == 1){
-            // não entendi essa condição, perguntar pra coleguinha próxima aula
-            // Se o pai de t for rubro o processo deverá ser repetido fazendo v=t
+        else { 
+            tio = avo.getFilhoEsquerdo(); 
         }
+
+        // lógica principal
+        if (pai == null || pai.getCor() == false) {
+            return;
+        }
+
+        if (tio.getCor() == true) {
+            avo.setCor(true);
+            tio.setCor(false);
+            pai.setCor(false);
+        }
+
+        executaCasoDoisPosInsercao(avo);
+    }
+
+    private void executaCasoTresPosInsercao(NoRubroNegro no){
+        
     }
     
-    // fazer as verificações de qual caso usar dentro do insert
+    // chamar o executaCasoUmPosInsercao()
     @Override 
     public NoRubroNegro insert(int elemento, NoArvore no){
         NoRubroNegro inserido = (NoRubroNegro) super.insert(elemento, no);
+        casosInsercao(inserido);
         return inserido;
     }
 }

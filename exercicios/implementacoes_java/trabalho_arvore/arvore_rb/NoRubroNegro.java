@@ -2,11 +2,11 @@ package arvore_rb;
 import arvore_binaria.NoArvore;
 
 public class NoRubroNegro extends NoArvore{
-    private int cor; // 1 = rubro e 0 = negro
+    private boolean cor; // true = rubro e false = negro
 
     public NoRubroNegro(NoRubroNegro filhoEsquerdo, NoRubroNegro filhoDireito, NoRubroNegro pai, int o){
         super(filhoEsquerdo, filhoDireito, pai, o);
-        this.cor = 0; // nó sempre começa negro
+        this.cor = true; // nó sempre começa rubro
     }
 
     @Override
@@ -40,11 +40,11 @@ public class NoRubroNegro extends NoArvore{
         this.pai = v;
     }
 
-    public int getCor(){
+    public boolean getCor(){
         return this.cor;
     }
 
-    public void setCor(int cor){
+    public void setCor(boolean cor){
         this.cor = cor;
     }
 }
