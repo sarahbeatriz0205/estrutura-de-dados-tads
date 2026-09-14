@@ -10,25 +10,21 @@ public class ArvoreAVL extends ArvoreBinariaDePesquisa{
         this.raiz = elementoTransformado;
     }
 
-    public String rebalancear(NoAVL noDesbalanceado, NoAVL noFilho){
+    public void rebalancear(NoAVL noDesbalanceado, NoAVL noFilho){
         if (noDesbalanceado.getFB() == -2 && noFilho.getFB() <= 0){
             rotacionaEsquerdaSimples(noDesbalanceado, noFilho);
-            return "Rebalanceado com sucesso!";
         }
         else if (noDesbalanceado.getFB() == 2 && noFilho.getFB() >= 0){
             rotacionaDireitaSimples(noDesbalanceado, noFilho);
-            return "Rebalanceado com sucesso!";
         }
         else if (noDesbalanceado.getFB() == -2 && noFilho.getFB() >= 0){
             rotacionaDireitaDupla(noDesbalanceado, noFilho);
-            return "Rebalanceado com sucesso!";
         }
         else if (noDesbalanceado.getFB() == 2 && noFilho.getFB() <= 0){
             rotacionaEsquerdaDupla(noDesbalanceado, noFilho);
-            return "Rebalanceado com sucesso!";
         }
         else {
-            return "Já está balanceado! Não precisa de rotação.";
+            return;
         }
     }
 
@@ -108,7 +104,7 @@ public class ArvoreAVL extends ArvoreBinariaDePesquisa{
         atualizaFBPosRemocao(pai);
     }
 
-    private void rotacionaEsquerdaSimples(NoAVL noDesbalanceado, NoAVL noFilho){ 
+    private static void rotacionaEsquerdaSimples(NoAVL noDesbalanceado, NoAVL noFilho){ 
         if (noFilho.getFilhoEsquerdo() == null && isRoot(noDesbalanceado)){
             noDesbalanceado.setFilhoDireito(null);
             noFilho.setFilhoEsquerdo(noDesbalanceado);
@@ -163,7 +159,7 @@ public class ArvoreAVL extends ArvoreBinariaDePesquisa{
         }
     }
 
-    private void rotacionaDireitaSimples(NoAVL noDesbalanceado, NoAVL noFilho){ 
+    private static void rotacionaDireitaSimples(NoAVL noDesbalanceado, NoAVL noFilho){ 
         if (noFilho.getFilhoDireito() == null && isRoot(noDesbalanceado)){
             noDesbalanceado.setFilhoEsquerdo(null);
             noFilho.setFilhoDireito(noDesbalanceado);
@@ -217,12 +213,12 @@ public class ArvoreAVL extends ArvoreBinariaDePesquisa{
         }
     }
 
-    private void rotacionaEsquerdaDupla(NoAVL noDesbalanceado, NoAVL noFilho){ 
+    private static void rotacionaEsquerdaDupla(NoAVL noDesbalanceado, NoAVL noFilho){ 
         rotacionaDireitaSimples(noFilho, noFilho.getFilhoDireito());
         rotacionaEsquerdaSimples(noDesbalanceado, noFilho);
     }
 
-    private void rotacionaDireitaDupla(NoAVL noDesbalanceado, NoAVL noFilho){ 
+    private static void rotacionaDireitaDupla(NoAVL noDesbalanceado, NoAVL noFilho){ 
         rotacionaEsquerdaSimples(noFilho, noFilho.getFilhoEsquerdo());
         rotacionaDireitaSimples(noDesbalanceado, noFilho);
     }

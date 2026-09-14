@@ -3,13 +3,6 @@ import arvore_binaria.ArvoreBinariaDePesquisa;
 import arvore_binaria.NoArvore;
 import arvore_avl.ArvoreAVL; // ainda vai ser usada pra as rotações
 
-/* 
-    1 - Se v é nó externo , v é negro
-    2 - O nó raiz é negro
-    3 - Se v é rubro, então ambos os filhos são negros
-    4 - Os caminhos de v para seus nós descendentes externos possuem idêntico número de nós negros
-*/
-
 public class RubroNegra extends ArvoreBinariaDePesquisa{
     public RubroNegra(int raiz){
         super(raiz);
@@ -21,56 +14,44 @@ public class RubroNegra extends ArvoreBinariaDePesquisa{
         return new NoRubroNegro(null, null, null, elemento);
     }
 
-    /*
-        Suponha w(pai de v) rubro e t, o pai
-        de w(avó de v) é negro. Se u, o irmão de w
-        (tio de v) é rubro, ainda é possível manter o
-        critério IV apenas fazendo a re-coloração de
-        t(Rubro),u(Negro) e w(Negro)
-    */
-   public void casosInsercao(NoRubroNegro no){
-        if (no == null || no.getPai() == null) {
-            return;
-        }
-        
+   public void casosInsercao(NoRubroNegro no){      
         NoRubroNegro pai = no.getPai();
         NoRubroNegro avo = pai.getPai();
         NoRubroNegro tio;
         if (pai.getElemento() < avo.getElemento()){ tio = avo.getFilhoDireito(); }
-        tio = avo.getFilhoEsquerdo();
+        else { tio = avo.getFilhoEsquerdo(); }
 
         // caso 1
         if (no.getPai().getCor() == false){
-            return;
+            // caso 2 dentro do caso 1 se possível
+            if (pai.getCor() == true && tio.getCor() == true) {
+                executaCasoDoisPosInsercao(no);
+                // caso 3 dentro do caso 2 depois de passar pelo caso 1 se possível
+                if (pai.getCor() == true && tio.getCor() == false) {
+                    executaCasoTresPosInsercao(no);
+                }
+            }
+            else {
+                // tenta o caso 3 se não cair no caso 2
+                if (pai.getCor() == true && tio.getCor() == false) {
+                    executaCasoTresPosInsercao(no);
+                }
+            }
         }
-        // caso 2
-        else if (pai.getCor() == true && tio.getCor() == true) {
-            executaCasoDoisPosInsercao(no);
-        }
-        else {
-            executaCasoTresPosInsercao(no);
-        }
+        
    }
 
     private void executaCasoDoisPosInsercao(NoRubroNegro no){
-        if (no == null || no.getPai() == null || no.getPai().getCor() == false) {
-            return;
-        }
-
         NoRubroNegro pai = no.getPai();
         NoRubroNegro avo = pai.getPai();
         NoRubroNegro tio;
 
-        if (pai.getElemento() < avo.getElemento()){ 
-            tio = avo.getFilhoDireito(); 
-        }
-        else { 
-            tio = avo.getFilhoEsquerdo(); 
-        }
+        if (pai.getElemento() < avo.getElemento()){ tio = avo.getFilhoDireito(); }
+        else { tio = avo.getFilhoEsquerdo(); }
 
         // lógica principal
         if (pai == null || pai.getCor() == false) {
-            return;
+            executaCasoTresPosInsercao(no);
         }
 
         if (tio.getCor() == true) {
@@ -83,10 +64,31 @@ public class RubroNegra extends ArvoreBinariaDePesquisa{
     }
 
     private void executaCasoTresPosInsercao(NoRubroNegro no){
+        NoRubroNegro pai = no.getPai();
+        NoRubroNegro avo = pai.getPai();
+        NoRubroNegro tio;
+
+        if (pai.getElemento() < avo.getElemento()){ tio = avo.getFilhoDireito(); }
+        else { tio = avo.getFilhoEsquerdo(); }
         
+        // caso 3a: rotação direita simples
+        if (tio.getCor() == false && tio.getElemento() < avo.getElemento()) {
+            ArvoreAVL.rotacionaDireitaSimples(avo, tio);
+        }
+        // caso 3b: rotação esquerda simples
+        else {
+            ArvoreAVL.rotacionaEsquerdaSimples(avo, tio);
+        }
+        // caso 3c: rotação esquerda simples
+        if (no.getElemento() < pai.getElemento() && pai.getElemento() > avo.getElemento()) {
+            ArvoreAVL.rotacionaDireitaDupla(avo, tio);
+        }
+        // caso 3d: rotação esquerda simples
+        else if (no.getElemento() > pai.getElemento() && pai.getElemento() < avo.getElemento()) {
+            ArvoreAVL.rotacionaEsquerdaDupla(avo, tio);
+        }
     }
     
-    // chamar o executaCasoUmPosInsercao()
     @Override 
     public NoRubroNegro insert(int elemento, NoArvore no){
         NoRubroNegro inserido = (NoRubroNegro) super.insert(elemento, no);
