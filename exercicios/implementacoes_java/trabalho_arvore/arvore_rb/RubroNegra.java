@@ -1,7 +1,6 @@
 package arvore_rb;
 import arvore_binaria.ArvoreBinariaDePesquisa;
 import arvore_binaria.NoArvore;
-import arvore_avl.ArvoreAVL; // ainda vai ser usada pra as rotações
 
 public class RubroNegra extends ArvoreBinariaDePesquisa{
     public RubroNegra(int raiz){
@@ -21,22 +20,16 @@ public class RubroNegra extends ArvoreBinariaDePesquisa{
         if (pai.getElemento() < avo.getElemento()){ tio = avo.getFilhoDireito(); }
         else { tio = avo.getFilhoEsquerdo(); }
 
-        // caso 1
         if (no.getPai().getCor() == false){
-            // caso 2 dentro do caso 1 se possível
-            if (pai.getCor() == true && tio.getCor() == true) {
-                executaCasoDoisPosInsercao(no);
-                // caso 3 dentro do caso 2 depois de passar pelo caso 1 se possível
-                if (pai.getCor() == true && tio.getCor() == false) {
-                    executaCasoTresPosInsercao(no);
-                }
-            }
-            else {
-                // tenta o caso 3 se não cair no caso 2
-                if (pai.getCor() == true && tio.getCor() == false) {
-                    executaCasoTresPosInsercao(no);
-                }
-            }
+            return;
+        }
+
+        if (pai.getCor() == true && tio.getCor() == true) {
+            executaCasoDoisPosInsercao(no);
+        }
+
+        if (pai.getCor() == true && tio.getCor() == false) {
+            executaCasoTresPosInsercao(no);
         }
         
    }
@@ -49,18 +42,151 @@ public class RubroNegra extends ArvoreBinariaDePesquisa{
         if (pai.getElemento() < avo.getElemento()){ tio = avo.getFilhoDireito(); }
         else { tio = avo.getFilhoEsquerdo(); }
 
-        // lógica principal
-        if (pai == null || pai.getCor() == false) {
-            executaCasoTresPosInsercao(no);
-        }
-
         if (tio.getCor() == true) {
             avo.setCor(true);
             tio.setCor(false);
             pai.setCor(false);
         }
 
-        executaCasoDoisPosInsercao(avo);
+        if (avo.getPai().getCor() == true) {
+            executaCasoDoisPosInsercao(avo);
+        }
+        else { // teoricamente o caso base
+            return;
+        }
+    }
+
+    // rotações refeitas (eu acho né) porque tem que mudar a cor e eu não posso fazer extends
+    private void rotacionaDireitaSimples(NoRubroNegro avo, NoRubroNegro irmao) {
+        if (irmao.getFilhoDireito() == null && isRoot(avo)){
+            irmao.setFilhoDireito(avo);
+            avo.setPai(irmao);
+            irmao.setPai(null);
+            this.raiz = irmao;
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+        else if (!isRoot(avo) && irmao.getFilhoDireito() != null){
+            NoRubroNegro antigoPai = avo.getPai();
+            NoRubroNegro filhoDir = irmao.getFilhoDireito();
+            irmao.setFilhoDireito(avo);
+            if (avo.getElemento() < antigoPai.getElemento()){
+                antigoPai.setFilhoEsquerdo(irmao);
+            }
+            else {
+                antigoPai.setFilhoDireito(irmao);
+            }
+            avo.setPai(irmao);
+            avo.setFilhoEsquerdo(filhoDir);
+            filhoDir.setPai(avo);
+            irmao.setPai(antigoPai);
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+        else if(isRoot(avo) && irmao.getFilhoDireito() != null){
+            NoRubroNegro filhoDir = irmao.getFilhoDireito();
+            irmao.setFilhoDireito(avo);
+            avo.setPai(irmao);
+            avo.setFilhoEsquerdo(filhoDir);
+            filhoDir.setPai(avo);
+            irmao.setPai(null);
+            this.raiz = irmao;
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+        else if (irmao.getFilhoDireito() == null && !isRoot(avo)){
+            NoRubroNegro antigoPai = avo.getPai();
+            irmao.setFilhoDireito(avo);
+            if (avo.getElemento() < antigoPai.getElemento()){
+                antigoPai.setFilhoEsquerdo(irmao);
+            }
+            else {
+                antigoPai.setFilhoDireito(irmao);
+            }
+            avo.setPai(irmao);
+            irmao.setPai(antigoPai);
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+    }
+
+    private void rotacionaEsquerdaSimples(NoRubroNegro avo, NoRubroNegro irmao) {
+        if (irmao.getFilhoEsquerdo() == null && isRoot(avo)){
+            irmao.setFilhoEsquerdo(avo);
+            avo.setPai(irmao);
+            irmao.setPai(null);
+            this.raiz = irmao;
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+        else if (!isRoot(avo) && irmao.getFilhoEsquerdo() != null){
+            NoRubroNegro antigoPai = avo.getPai();
+            NoRubroNegro filhoEsq = irmao.getFilhoEsquerdo();
+            irmao.setFilhoEsquerdo(avo);
+            if (avo.getElemento() < antigoPai.getElemento()){
+                antigoPai.setFilhoEsquerdo(irmao);
+            }
+            else {
+                antigoPai.setFilhoDireito(irmao);
+            }
+            avo.setPai(irmao);
+            avo.setFilhoDireito(filhoEsq);
+            filhoEsq.setPai(avo);
+            irmao.setPai(antigoPai);
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+        else if(isRoot(avo) && irmao.getFilhoEsquerdo() != null){
+            NoRubroNegro filhoEsq = irmao.getFilhoEsquerdo();
+            irmao.setFilhoEsquerdo(avo);
+            avo.setPai(irmao);
+            avo.setFilhoDireito(filhoEsq);
+            filhoEsq.setPai(avo);
+            irmao.setPai(null);
+            this.raiz = irmao;
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+        else if (irmao.getFilhoEsquerdo() == null && !isRoot(avo)){
+            NoRubroNegro antigoPai = avo.getPai();
+            irmao.setFilhoEsquerdo(avo);
+            if (avo.getElemento() < antigoPai.getElemento()){
+                antigoPai.setFilhoEsquerdo(irmao);
+            }
+            else {
+                antigoPai.setFilhoDireito(irmao);
+            }
+            avo.setFilhoDireito(null);
+            avo.setPai(irmao);
+            irmao.setPai(antigoPai);
+            // troca cor dps do processo
+            irmao.setCor(false);
+            avo.setCor(true);
+            return;
+        }
+    }
+
+    private void rotacionaDireitaDupla(NoRubroNegro avo, NoRubroNegro irmao) {
+        rotacionaEsquerdaSimples(avo, irmao);
+        rotacionaDireitaSimples(avo, irmao);
+    }
+
+    private void rotacionaEsquerdaDupla(NoRubroNegro avo, NoRubroNegro irmao) {
+        rotacionaDireitaSimples(avo, irmao);
+        rotacionaEsquerdaSimples(avo, irmao);
     }
 
     private void executaCasoTresPosInsercao(NoRubroNegro no){
@@ -73,19 +199,19 @@ public class RubroNegra extends ArvoreBinariaDePesquisa{
         
         // caso 3a: rotação direita simples
         if (tio.getCor() == false && tio.getElemento() < avo.getElemento()) {
-            ArvoreAVL.rotacionaDireitaSimples(avo, tio);
+            rotacionaDireitaSimples(avo, tio);
         }
         // caso 3b: rotação esquerda simples
         else {
-            ArvoreAVL.rotacionaEsquerdaSimples(avo, tio);
+            rotacionaEsquerdaSimples(avo, tio);
         }
         // caso 3c: rotação esquerda simples
         if (no.getElemento() < pai.getElemento() && pai.getElemento() > avo.getElemento()) {
-            ArvoreAVL.rotacionaDireitaDupla(avo, tio);
+            rotacionaDireitaDupla(avo, tio);
         }
         // caso 3d: rotação esquerda simples
         else if (no.getElemento() > pai.getElemento() && pai.getElemento() < avo.getElemento()) {
-            ArvoreAVL.rotacionaEsquerdaDupla(avo, tio);
+            rotacionaEsquerdaDupla(avo, tio);
         }
     }
     

@@ -34,11 +34,6 @@ public class Dicionario implements IDicionario {
         return alfa;
     }
 
-    private double probes(){
-        double p = 1.0 / (1.0 - fatorDeCarga());
-        return p;
-    }
-
     private void rehash(){
         int tamanhoNovo = Primo.menorPrimoMaiorOuIgualA(this.tamanho*2);
         Item[] ptrAntiga = this.a;
