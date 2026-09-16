@@ -18,6 +18,7 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 - **[Dicionário implementado com tabela Hash](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_dicionario/dicionario_simples/Dicionario.java)**
 - **[Método de ordenação Tree Sort implementado com Árvore Binária de Pesquisa](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_binaria/TreeSort.java)**
 - **[Implementação de Árvore AVL](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_avl/ArvoreAVL.java)**
+- **[Implementação de Árvore Rubro Negra](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_avl/RubroNegra.java)**
 
 
 ## Implementações em C#
