@@ -54,3 +54,11 @@ public class ArvoreB {
 
 > [!IMPORTANT]
 > **Quando o raiz já tá cheio (sem estourar), dividimos ele no meio**
+
+## Remoção
+- **Caso 1:** Se a chave está num nó com chaves sobrando (está longe do mínimo), apenas remover
+- **Caso 2:** Se a chave está num nó interno
+  - **Caso 2a:** Verifico o antecessor e se no nó dele tiver chaves sobrando, ele toma o lugar da chave. Tem que sempre verificar se o nó não vai ficar muito pequeno
+  - **Se o caso 2a falhar e o nó ficar muito pequeno:** Verifico o sucessor e se no nó dele tiver chaves sobrando, ele toma o lugar da chave
+  - **Se falhar novamente:** Se os filhos esquerdo e direito estiverem no mínimo, faço uma fusão e junto os dois
+- **Caso 3:** Se a chave está num nó externo e esse nó está no limite, olho pro irmão da esquerda e se ele tiver chaves suficientes, puxo o antecessor para o nó pai e uma das chaves do nó pai descem para ocupar o lugar da chave removida
