@@ -40,3 +40,5 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 ### Estrutura de Dados Não Lineares
 - **[Árvore AVL](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/tree/main/aulas/ednl/aulas_arvore_avl)**
 - **[Árvore Rubro-Negra](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/tree/main/aulas/ednl/aulas_arvore_rb)**
+- **[Árvores B](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/tree/main/aulas/ednl/aulas_arvore_b)**
+- **[Grafos](https://github.com/sarahbeatriz0205/estrutura-de-dados-tads/tree/main/aulas/ednl/aulas_grafos)**
