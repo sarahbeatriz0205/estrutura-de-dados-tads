@@ -10,7 +10,7 @@ public class TesteRubroNegra {
             RubroNegra arvore = new RubroNegra(valorRaizInicial);
 
             System.out.println("\n--- Estado Inicial (Raiz: 10) ---");
-            arvore.imprimirArvore(); // Chama internamente o preencherMatriz()
+            arvore.imprimirArvore(); 
 
             System.out.println("\n=== 2. Inserindo Elementos e Exibindo a Matriz ===");
             int[] elementos = {20, 30, 15, 25, 5, 1, 18, 27};
@@ -19,18 +19,18 @@ public class TesteRubroNegra {
                 System.out.println("\n-> Inserindo: " + elemento);
                 arvore.insert(elemento, arvore.root());
                 
-                // Exibe a estrutura da matriz com os elementos e suas cores [Rubro] / [Negro]
+                
                 arvore.imprimirArvore();
             }
 
             System.out.println("\n=== 3. Executando preencherMatriz Manualmente ===");
-            // Demonstração de chamada direta do algoritmo de preenchimento de matriz
-            int altura = arvore.heigth(arvore.root(), arvore.root()); // Se a BST tiver método de altura
+            
+            int altura = arvore.heigth(arvore.root(), arvore.root()); 
             int linhas = altura + 2;
             int colunas = (int) Math.pow(2, linhas) - 1;
             String[][] matriz = new String[linhas][colunas];
 
-            // Preenche a matriz customizada com deslocamento inicial
+            
             imprimirMatrizCustomizada(arvore, matriz, colunas);
 
             System.out.println("\n=== 4. Teste de Remoção com Atualização da Matriz ===");
@@ -55,16 +55,9 @@ public class TesteRubroNegra {
         }
     }
 
-    /**
-     * Exemplo de método utilitário para imprimir no console a matriz gerada
-     * pelo preencherMatriz().
-     */
+
     private static void imprimirMatrizCustomizada(RubroNegra arvore, String[][] matriz, int colunas) {
-        int deslocamentoInicial = (colunas + 1) / 4;
-        
-        // Se preencherMatriz for protected e estiver no mesmo pacote de Main, 
-        // pode ser chamado diretamente. Caso contrário, a chamada ocorre via imprimirArvore().
-        // arvore.preencherMatriz(arvore.root(), matriz, 0, colunas / 2, deslocamentoInicial);
+        int deslocamentoInicial = (colunas + 1) / 4;    
 
         System.out.println("Caminhamento Em-Ordem de validação:");
         arvore.inOrder(arvore.root());
