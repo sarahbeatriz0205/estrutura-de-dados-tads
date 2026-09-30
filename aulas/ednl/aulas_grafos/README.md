@@ -41,3 +41,20 @@ public class Vertice {
 - **Arestas paralelas: Duas arestas que saem de um vértice (saída) apontam para o outro vértice (chegada), sendo, por exemplo, o caminho mais curto e o caminho mais longo**
 - **Multigrafo: É o grafo que possui laços e/ou arestas paralelas, caso contrário é um Grafo Simples**
 - **Grafo completo: Todos os vértices estão ligados entre si (K4: grafo completo de ordem 4)**
+- **Grafo bipartido: Os vértices de um conjunto possui ligação com todos os vértices de outro conjunto, mas não entre si**
+- **Grafo rotulado: Rotula vértices**
+- **Grafo valorado: Rotula arestas com valores**
+- **Subgrafo: Grafo contido em um grafo maior. Para ser subgrafo, tem que ser possível tirar um vértice**
+- **Grafo isomorfo: Deve ser possível manter as ligações (adjacências) entre as mesmas arestas mesmo que a forma seja mudada**
+<img width="662" height="201" alt="image" src="https://github.com/user-attachments/assets/b78cc5fa-9d0d-4d31-a2e8-4816a564b7c5" />
+
+- **Grafo regular: Todos os graus de todos os vértices são iguais**
+- **Clique: É um subgrafo completo**
+  
+    <img width="402" height="169" alt="image" src="https://github.com/user-attachments/assets/9cc75938-1ddd-4bcc-9005-97e7643017f2" />
+    
+  - **Na imagem, se eu retirar os vértices 5 e 1, resultará em um subgrafo que possui ligações entre todos (completo)**
+
+- **Conjunto independente de vértices: Vértices que não possuem ligações entre si**
+- **Grafo complementar: Arestas que faltam para um grafo ser completo. Possui a mesma quantidade de vértices, mas criam apenas as ligações que faltam para outro grafo ser completo**
+- **Grafo parcial: Remove arestas, mas não remove vértices**
