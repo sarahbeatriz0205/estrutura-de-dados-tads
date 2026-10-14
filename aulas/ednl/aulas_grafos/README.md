@@ -58,3 +58,33 @@ public class Vertice {
 - **Conjunto independente de vértices: Vértices que não possuem ligações entre si**
 - **Grafo complementar: Arestas que faltam para um grafo ser completo. Possui a mesma quantidade de vértices, mas criam apenas as ligações que faltam para outro grafo ser completo**
 - **Grafo parcial: Remove arestas, mas não remove vértices**
+
+## TAD Grafo
+### Matriz de adjacência
+- Armazena o grafo dentro de uma matriz
+- Linhas são vértices e colunas são arestas
+- Insere + 1 se houver ligação entre vértices e 0 se não houver
+- É interessante guardar um objeto do tipo **Aresta**, que permite que a ligação na matriz tenha mais informações além do sinal que indica que existe uma aresta
+- Se houver arestas paralelas (várias arestas que saem do mesmo lugar e chegam no mesmo lugar) se guarda uma lista de objetos **Aresta** dentro da matriz
+    
+<img width="280" height="161" alt="image" src="https://github.com/user-attachments/assets/0643dea4-2d3f-4ebd-8d9e-a0e2998c8151" />
+
+### Matriz de custos
+- Bom quando se guarda distâncias
+- Em um grafo simples valorado, armazeno o valor associado à aresta
+- Armazena 0 se não houver valor nenhum
+- Se houver arestas paralelas (várias arestas que saem do mesmo lugar e chegam no mesmo lugar) se guarda uma lista de valores dentro da matriz
+
+### Matriz de incidência
+_Faltou eu entender_
+
+### Lista de adjacência
+- Lista encadeada contendo todos os vértices (objeto **Vertice**) do grafo
+- Dentro da classe **Vertice**, existirá uma lista de **Arestas**
+<img width="272" height="184" alt="image" src="https://github.com/user-attachments/assets/d1afa987-c4fb-426d-a74b-ca09fe69b64f" />
+
+
+### Lista de arestas
+- Cria-se duas listas g e h onde, por exemplo, o elemento no índice [0] das duas listas possuem uma aresta e assim por diante
+- Uma lista de vértices guarda todos os vértices, até mesmo os sem arestas
+- Ou seja, ao total 3 listas são usadas
