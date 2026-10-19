@@ -1,8 +1,8 @@
 # Grafos
-- **Definido por dois conjuntos: um de vértices e outro de arestas**
-- **Conjunto de vértices (nós) não pode ser vazio**
-- **Conjunto de arestas são pares ordenados que ligam dois vértices**
-  - **Se um vértice deixar de existir, a aresta também deixará de existir**
+- Definido por dois conjuntos: um de vértices e outro de arestas
+- Conjunto de vértices (nós) não pode ser vazio
+- Conjunto de arestas são pares ordenados que ligam dois vértices
+  - Se um vértice deixar de existir, a aresta também deixará de existir
 
 <img width="742" height="242" alt="image" src="https://github.com/user-attachments/assets/1d2f6629-96d2-43d9-b926-74dc5946e7bd" />
 
@@ -83,8 +83,57 @@ _Faltou eu entender_
 - Dentro da classe **Vertice**, existirá uma lista de **Arestas**
 <img width="272" height="184" alt="image" src="https://github.com/user-attachments/assets/d1afa987-c4fb-426d-a74b-ca09fe69b64f" />
 
+~~~java
+public class Multigrafo implements IMultigrafo {
+  private int qtdVertices;
+  private Vector<Vertice> vertices;
+}
+
+public class Vertice {
+  private int verticeId;
+  private int grau;
+  private Object elemento;
+  private Vector<Aresta> arestasPertencentes;
+}
+~~~
+
 
 ### Lista de arestas
 - Cria-se duas listas g e h onde, por exemplo, o elemento no índice [0] das duas listas possuem uma aresta e assim por diante
 - Uma lista de vértices guarda todos os vértices, até mesmo os sem arestas
 - Ou seja, ao total 3 listas são usadas
+
+## Principais métodos (Grafo simplificado)
+- **finalVertices(aresta)**: Passo uma aresta e ele me retorna um array com os dois vértices que fazem parte dessa aresta 
+- **oposto(vertice, aresta)**: Passo um vértice e uma aresta e me passa o vértice oposto (oposto seria o destino final saindo de um vértice, por exemplo). O vértice passado deve fazer parte da aresta, senão não é possível encontrar o oposto 
+- **éAdjacente(vertice1, vertice2)**: Passo dois vértices e ele me retorna se é adjacente ou não (ou seja, se existir uma aresta entre eles)
+- **substituir(vertice, elemento)**: Substitui o valor dentro do vértice pelo elemento 
+- **substituir(aresta, elemento)**: Substitui o valor dentro da aresta pelo elemento 
+- **inserirVertice(valorArmazenado)**: Cria um vértice com o objeto passado
+- **inserirAresta(vertice1, vertice2, valorArmazenado)**: Passo os dois vértices e crio uma aresta
+- **removeVértice(vertice)**: Remove vértices (some as arestas pertencentes a ele)
+- **removeAresta(aresta)**: Remove arestas
+
+## Métodos iteradores
+- **arestasIncidentes(vertice)**: Retorna todas as arestas que batem no vértice passado
+- **vertices()**: Retorna todos os vértices do grafo
+- **arestas()**: Retorna todas as arestas do grafo
+
+## Métodos para grafo direcional
+- **éDirecionado(aresta)**: Retorna true se for uma aresta direcionada
+- **inserirArestaDirecionada(vertice1, vertice2, valorArmazenado)**
+
+~~~java
+public class Aresta {
+  private Vertice vertice1;
+  private Vertice vertice2;
+  private Object elemento;
+  private boolean ehDirecionado;
+}
+
+public class Vertice {
+  private int verticeId;
+  private int grau;
+  private Object elemento;
+}
+~~~
