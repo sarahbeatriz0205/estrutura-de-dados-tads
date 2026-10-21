@@ -137,3 +137,53 @@ public class Vertice {
   private Object elemento;
 }
 ~~~
+
+## Categorias de Problemas Algorítmicos
+### Problema de Decisão
+- Consiste em responder perguntas de "sim" ou "não"
+
+### Problema de Localização
+- Consiste em encontrar, caso exista, determinada estrutura satisfazendo requisitos especificados por uma questão
+
+### Problema de Otimização
+- Consiste em satisfazer um critério de otimização
+
+## Conexidade e Distância
+- **Conexidade:** Estudo das conexões dos grafos
+- **Grafo conexo:** Todos os vértices estão minimamente conectados e eu consigo chegar em qualquer ponto a partir de qualquer ponto. Sempre há uma sequência de conexões onde é possível sair de um lugar para outro
+- **Grafo não conexo:** Quando há ao menos uma possibilidade de não se chegar em um ponto a partir de outro
+- **Grafo fortemente conexo:** Mesmo princípio do grafo conexo, mas o grafo tem que ser um dígrafo (grafo direcionado). Todo mundo consegue chegar em todo mundo
+<img width="352" height="157" alt="image" src="https://github.com/user-attachments/assets/83bdb170-04ee-474d-852a-dae3c84ca052" />
+
+- **Algoritmo para conexidade:** Faz fusões entre os vértices que possuem conexões e se sobrar apenas um vértice no final das fusões, é um grafo conexo
+  - Qualquer grafo simples com n vértices e mais que (n-1)(n-2)/2 arestas é conexo 
+<img width="677" height="224" alt="image" src="https://github.com/user-attachments/assets/fdb22b95-7064-4f0b-b519-f10c25c88a7f" />
+
+~~~
+--- Pseudo-Algoritmo para Conexidade de Goodman ---
+P0 [inicialização]
+H=Vg; // todos os vértices
+c=0;
+P1[gere a próxima componente conexa]
+Enquanto (H!=vazio){
+  selecione um vértice v0 pertencente a H
+  Enquanto (v0 for adjacente a algum vértice v pertencente a H){
+    H=grafo resultante da fusão de v com v0;
+    v0=fusão de v com v0;
+  }
+  remova v0, isto é, faça H=H-v0;
+  c=c+1;
+  
+  }
+P2[Testa o tipo de conexidade]
+Se(c>1)
+  G é não conexo
+senao
+  G é conexo
+~~~
+
+
+- **Antecessor de um vértice:** É todo Vj que seja extremidade inicial de uma aresta que termina em Vi.
+- **Sucessor de um vértice:** É todo Vj que seja extremidade final de uma aresta que termina em Vi.
+- **Fecho transitivo direto:** Todos os vértices que eu consigo atingir a partir de um vértice inicial, contando com o próprio vértice
+- **Fecho transitivo inverso:** Todos os vértices que chegam em um determinado vértice
