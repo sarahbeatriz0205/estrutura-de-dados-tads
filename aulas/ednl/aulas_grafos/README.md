@@ -182,8 +182,26 @@ senao
   G é conexo
 ~~~
 
-
 - **Antecessor de um vértice:** É todo Vj que seja extremidade inicial de uma aresta que termina em Vi.
 - **Sucessor de um vértice:** É todo Vj que seja extremidade final de uma aresta que termina em Vi.
 - **Fecho transitivo direto:** Todos os vértices que eu consigo atingir a partir de um vértice inicial, contando com o próprio vértice
 - **Fecho transitivo inverso:** Todos os vértices que chegam em um determinado vértice
+
+## Algoritmo para encontrar as componentes fortemente conexas de um dígrafo implementado com lista
+~~~
+H = V; -> conjunto de vértices do grafo
+Enquanto(H!=vazio){
+  Ache a componente conexa em relação a Vi -> verifica fecho transitivo direto "intercessão" fecho transitivo inverso e o resultado do conjunto é removido de H, onde H vira o conjunto restante e continua até H ficar vazio
+~~~
+
+## Algoritmo para encontrar as componentes fortemente conexas de um dígrafo implementado com matriz
+- Matriz Q é a transposição da matriz R
+- Multiplica os elementos de R e Q
+
+## Grafo reduzido
+- Cada vértice corresponde a uma componente fortemente conexa do grafo
+- **Vértice de corte:** Vértices que eu removo que vão desconectar o grafo
+<img width="651" height="190" alt="image" src="https://github.com/user-attachments/assets/d1e208d1-37d1-44ad-b817-14eb46ef495b" />
+
+  - No exemplo, se eu retirar 3 e 4, desconecto o grafo. Porém se eu apenas retirar o 5, também desconecto, e ele é o **vértice de corte de cardinalidade mínima**
+- **Arestas de corte:** Mesmo conceito de vértice de corte, só que para arestas
