@@ -32,4 +32,8 @@ public class Vertice {
     public void setGrau(int grau) {
         this.grau = grau;
     }
+
+    public void setId(int verticeId) {
+        this.verticeId = verticeId;
+    }
 }
