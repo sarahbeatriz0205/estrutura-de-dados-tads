@@ -62,7 +62,6 @@ public class Vertice {
 ## TAD Grafo
 ### Matriz de adjacência
 - Armazena o grafo dentro de uma matriz
-- Linhas são vértices e colunas são arestas
 - Insere + 1 se houver ligação entre vértices e 0 se não houver
 - É interessante guardar um objeto do tipo **Aresta**, que permite que a ligação na matriz tenha mais informações além do sinal que indica que existe uma aresta
 - Se houver arestas paralelas (várias arestas que saem do mesmo lugar e chegam no mesmo lugar) se guarda uma lista de objetos **Aresta** dentro da matriz
@@ -205,3 +204,36 @@ Enquanto(H!=vazio){
 
   - No exemplo, se eu retirar 3 e 4, desconecto o grafo. Porém se eu apenas retirar o 5, também desconecto, e ele é o **vértice de corte de cardinalidade mínima**
 - **Arestas de corte:** Mesmo conceito de vértice de corte, só que para arestas
+
+## Caminhos 
+- Sequência de vértices e arestas interligadas
+- Vértice final de uma aresta é o vértice inicial da próxima aresta
+- **Caminho fechado (ciclo):** Caminho onde inicia-se em vertice1 e termina em vertice1 (nele mesmo)
+- **Caminho aberto:** Caminho onde inicia-se em um vértice e termina em outro distinto
+
+### Tipos de caminhos
+- Passeio: Pode repetir aresta e vértice
+- Caminho: Não repete arestas
+- Caminho simples: Não repete arestas nem vértices
+- Ciclo (circuito): Caminho fechado sem repetição de arestas
+- Ciclo simples. Caminho simples que permite apenas a repetição do vértice inicial
+
+### Grafos Eulerianos (grafos de Euler)
+- Grafos onde é possível achar um caminho fechado passando em cada aresta uma única vez
+- Quando o grau de todos os vértices for par, é um grafo de Euler
+<img width="204" height="187" alt="image" src="https://github.com/user-attachments/assets/866b5a64-a202-4d02-8cf3-ff4f3bce56a0" />
+
+
+<img width="173" height="205" alt="image" src="https://github.com/user-attachments/assets/62975304-744e-4c71-b259-06a846ba2493" />
+
+- Esse grafo não é de Euler porque o v3 tem grau ímpar
+
+- Caminho Euleriano: Caminho em que eu passo por cada aresta uma única vez e ainda assim passo por todas as arestas
+- Grafo semi-euleriano: Quando existem 2 vértices com grau ímpar (inicia em um vértice ímpar e termina em outro ímpar
+- Algoritmo: Pega uma linha da matriz e soma as arestas. Se ao terminar a soma ela for maior que 2, não existe caminho
+- Método de Fleury: Atravessa aresta e apaga ela. Se ficar um vértice isolado, apaga ela também
+  - Precisa verificar se na hora que eu apagar a aresta, o grafo vai ficar desconectado (deixa de ser um grafo conexo)
+
+## Grafo Hamiltoniano
+- É um grafo hamiltoniano quando eu encontro um ciclo simples (sem repetição de arestas e vértices)
+- Obrigação de visitar todos os vértices, não todas as arestas
