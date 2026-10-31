@@ -2,7 +2,7 @@ package exercicios.implementacoes_java.trabalho_grafos.matriz_de_adjacencia;
 import java.util.Vector;
 
 public class Grafo {  
-    private Vector<Aresta>[][] matriz_adjancencia; // vai guardar as arestas
+    private Vector<Aresta>[][] matriz_adjancencia; // vai guardar os vetores com objs Aresta
     private Vector<Vertice> vertices;
     private Vector<Aresta> arestas;
     private int numVertices;
@@ -49,9 +49,14 @@ public class Grafo {
     
     public boolean ehAdjacente(Vertice vertice1, Vertice vertice2) {
         Vector<Aresta> arestas = new Vector<Aresta>();
-        // id tá sendo sempre numVertices - 1, então sempre vai ser um índice diferente
         arestas = this.matriz_adjancencia[vertice1.getId()][vertice2.getId()];
-        if (arestas != null) {
+        if (arestas.size() != 0) {
+            for (int i=0; i < arestas.size(); i++) {
+                // se for direcionada, a ordem a qual os parametros foram inseridos vai importar
+                if (arestas.get(i).getFlagDirecionada() && arestas.get(i).getVerticeOrigem() == vertice1) {
+                    return true;
+                }
+            }
             return true;
         }
         return false;
@@ -66,18 +71,17 @@ public class Grafo {
     }
 
     public void inserirVertice(Object elemento) {
-        // faz o trabalho de add o vértice no grafo, pra dizer que ele existe ("eu existo porra")
-        Vertice novoVertice = new Vertice(elemento, this.numVertices);
+        // faz o trabalho de add o vértice no grafo, pra dizer que ele existe 
+        Vertice novoVertice = new Vertice(elemento, this.numVertices+1);
         this.vertices.add(novoVertice);
 
         // faz o trabalho de redimensionar a matriz pra abrir espaço pro novo vértice
-        // "que coisa horrível, coitado do pc que processa esse lixo"
         int novoTamanho = this.numVertices+1;
         Vector<Aresta>[][] novaMatriz = new Vector[novoTamanho][novoTamanho];
-        for (int i=0; i < novoTamanho; i++) {
-            for (int j=0; j < this.numVertices-1; j++) {
-                if (this.matriz_adjancencia[i][j] != null) {
-                    novaMatriz[i][j] = this.matriz_adjancencia[i][j];
+        for (int i=0; i < this.numVertices; i++) {
+            for (int j=0; j < this.numVertices; j++) {
+                if (this.matriz_adjancencia[i][j] == null) {
+                    
                 } else {
                     novaMatriz[i][j] = new Vector<Aresta>();
                 }
@@ -93,13 +97,30 @@ public class Grafo {
         this.numVertices = novoTamanho;
     }
 
-    public void inserirAresta(Vertice vertice1, Vertice vertice2, int elemento) {
-        Aresta aresta = new Aresta(elemento, vertice1, vertice2, false);
+    public void inserirAresta(Vertice vertice1, Vertice vertice2, int elemento, boolean ehDirecionada) {
+        Aresta aresta = new Aresta(elemento, vertice1, vertice2, ehDirecionada);
         this.arestas.add(aresta);
+        if (ehDirecionada) {
+            this.matriz_adjancencia[vertice1.getId()][vertice2.getId()].add(aresta);
+            return;
+        }
         this.matriz_adjancencia[vertice1.getId()][vertice2.getId()].add(aresta);
+        this.matriz_adjancencia[vertice2.getId()][vertice1.getId()].add(aresta);
+        return;  
     }
 
     public void removeVertice(Vertice vertice) {
+        // quando um vértice é removido, suas arestas somem. eu tinha esquecido disso
+        Vector<Aresta> arestasParaRemover = new Vector<>();
+        for (Aresta a : this.arestas) {
+            if (a.getVerticeOrigem() == vertice || a.getVerticeDestino() == vertice) {
+                arestasParaRemover.add(a);
+            }
+        }
+        for (Aresta a : arestasParaRemover) {
+            removeAresta(a); 
+        }
+
         this.vertices.remove(vertice); // primeiro remove da lista geral
 
         int novoTamanho = this.numVertices-1;
@@ -121,7 +142,36 @@ public class Grafo {
     }
 
     public void removeAresta(Aresta aresta) {
-        // ???
+        this.arestas.remove(aresta);
+
+        Vector<Aresta> arestasTotais1 = new Vector<Aresta>();
+        if (aresta.getFlagDirecionada()) {
+           arestasTotais1 = this.matriz_adjancencia[aresta.getVerticeOrigem().getId()][aresta.getVerticeDestino().getId()];
+           for (int i=0; i < arestasTotais1.size(); i++) {
+                if (arestasTotais1.get(i) == aresta) {
+                    arestasTotais1.remove(aresta);
+                    break;
+                }
+           } 
+        }
+        else {
+            arestasTotais1 = this.matriz_adjancencia[aresta.getVerticeOrigem().getId()][aresta.getVerticeDestino().getId()];
+            Vector<Aresta> arestasTotais2 = this.matriz_adjancencia[aresta.getVerticeDestino().getId()][aresta.getVerticeOrigem().getId()];
+
+            for (int i=0; i < arestasTotais1.size(); i++) {
+                if (arestasTotais1.get(i) == aresta) {
+                    arestasTotais1.remove(i);
+                    break;
+                }
+            }
+
+            for (int j=0; j < arestasTotais2.size(); j++) {
+                if (arestasTotais2.get(j) == aresta) {
+                    arestasTotais2.remove(j);
+                    break;
+                }
+            } 
+        }
     }
 
     public Vector<Vector<Aresta>> arestasIncidentes(Vertice vertice) {
@@ -140,12 +190,32 @@ public class Grafo {
         return this.arestas;
     }
 
+    public boolean ehDirecionada(Aresta aresta) {
+        if (aresta.getFlagDirecionada()) {
+            return true;
+        }
+        return false;
+    }
+
     public void printMatriz() {
         for (int i = 0; i < this.numVertices; i++) {
             for (int j = 0; j < this.numVertices; j++) {
-                System.out.print( "[" + this.matriz_adjancencia[i][j] + "]" );
+                System.out.print("[ ");
+                Vector<Aresta> arestas = this.matriz_adjancencia[i][j];
+                if (arestas != null && arestas.size() > 0) {
+                    for (int k=0; k < arestas.size(); k++){
+                        System.out.print(arestas.get(k).getValor());
+                        if (k < arestas.size() - 1) {
+                            System.out.print(" "); 
+                        }
+                    }    
+                }
+                else {
+                    System.out.print(" ");
+                }  
+                System.out.print(" ]"); 
             }
+            System.out.println();   
         }
-        System.out.println();     
     }         
 }
