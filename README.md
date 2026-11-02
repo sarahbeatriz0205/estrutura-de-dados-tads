@@ -19,8 +19,8 @@ Este repositório contém as implementações, algoritmos e exercícios desenvol
 - **[Método de ordenação Tree Sort implementado com Árvore Binária de Pesquisa](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_binaria/TreeSort.java)**
 - **[Implementação de Árvore AVL](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_avl/ArvoreAVL.java)**
 - **[Implementação de Árvore Rubro Negra](https://github.com/sarahbeatriz0205/estrutura-dados-tads/blob/main/exercicios/implementacoes_java/trabalho_arvore/arvore_rb/RubroNegra.java)**
-- **[Grafo implementado com Matriz de Adjacência]**(/exercicios/implementacoes_java/trabalho_grafos/matriz_de_adjacencia/Grafo.java)
-- **[Grafo implementado com Lista de Adjacência]**(/exercicios/implementacoes_java/trabalho_grafos/lista_de_adjacencia/Grafo.java)
+- **[Grafo implementado com Matriz de Adjacência](/exercicios/implementacoes_java/trabalho_grafos/matriz_de_adjacencia/Grafo.java)**
+- **[Grafo implementado com Lista de Adjacência](/exercicios/implementacoes_java/trabalho_grafos/lista_de_adjacencia/Grafo.java)**
 
 
 ## Implementações em C#
