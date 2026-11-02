@@ -1,5 +1,4 @@
 package exercicios.implementacoes_java.trabalho_grafos.matriz_de_adjacencia;
-import java.util.Vector;
 
 public class Vertice {
     private int verticeId;

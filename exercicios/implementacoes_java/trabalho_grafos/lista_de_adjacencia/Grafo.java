@@ -3,11 +3,13 @@ import java.util.Vector;
 
 public class Grafo {
     private int numVertices;
+    private int numArestas;
     private Vector<Vertice> vertices;
     private Vector<Aresta> arestas;
 
     public Grafo() {
         this.numVertices = 0;
+        this.numArestas = 0;
         this.vertices = new Vector<Vertice>();
         this.arestas = new Vector<Aresta>();
     }
@@ -73,12 +75,14 @@ public class Grafo {
     public void inserirAresta(Vertice vertice1, Vertice vertice2, int valor, boolean ehDirecionada) {
         Aresta novaAresta = new Aresta(valor, vertice1, vertice2, ehDirecionada);
         this.arestas.add(novaAresta);
+        this.numArestas++;
 
         if (ehDirecionada) {
             Adjacencia adj = new Adjacencia(vertice2, novaAresta);
             vertice1.getAdjacencias().add(adj);
             vertice1.setGrau(vertice1.getGrau()+1);
             vertice2.setGrauEntrada(vertice2.getGrauEntrada()+1);
+            return;
         }
         // se ela for paralela (não direcionada), só adiciono dois obj Adjacencia na lista dos dois e mudo o grau
         Adjacencia adjVertice1 = new Adjacencia(vertice2, novaAresta);
@@ -91,8 +95,6 @@ public class Grafo {
         vertice2.setGrau(vertice2.getGrau()+1);
     }
 
-    // tenho que dar um jeito de atualizar os graus de entrada e saída
-    // método incompleto
     public void removeVertice(Vertice vertice) {
         int i = 0;
         while (i < vertice.getAdjacencias().size()) {
@@ -100,11 +102,16 @@ public class Grafo {
             Vertice verticeParaVerificar = adjAtual.getVertice();
             Vector<Adjacencia> paraRemover = new Vector<Adjacencia>(verticeParaVerificar.getAdjacencias());
             
-            for (int j=0; j < verticeParaVerificar.getAdjacencias().size(); j++) {
+            for (int j=0; j < paraRemover.size(); j++) {
                 Adjacencia adjRemover = paraRemover.get(j);
                 if (adjRemover.getVertice() == vertice) {
-                    paraRemover.remove(adjRemover);
-                }  
+                    if (adjRemover.getAresta().getFlagDirecionada()) {
+                        verticeParaVerificar.setGrauEntrada(verticeParaVerificar.getGrauEntrada()-1);
+                    }
+                    verticeParaVerificar.setGrau(verticeParaVerificar.getGrau()-1);
+                    paraRemover.remove(j);
+                    j--;
+                } 
             }
             verticeParaVerificar.setAdjacencia(paraRemover);
             i++;
@@ -114,6 +121,8 @@ public class Grafo {
     }
 
     public void removeAresta(Aresta aresta) {
+        this.arestas.remove(aresta);
+        this.numArestas--;
         Vertice origem = aresta.getVerticeOrigem();
         Vertice destino = aresta.getVerticeDestino();
 
