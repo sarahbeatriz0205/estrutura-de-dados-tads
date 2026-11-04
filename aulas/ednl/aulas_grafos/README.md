@@ -237,3 +237,33 @@ Enquanto(H!=vazio){
 ## Grafo Hamiltoniano
 - É um grafo hamiltoniano quando eu encontro um ciclo simples (sem repetição de arestas e vértices)
 - Obrigação de visitar todos os vértices, não todas as arestas
+
+## Algoritmo de Dijkstra
+- Utiliza um método guloso para o problema do menor caminho de origem única
+- Funciona em grafos direcionados e não direcionados obrigatoriamente com arestas não negativas
+- Eficiência: O([m+n] log n)
+- Encontra o menor caminho de um vértice com relação a todos os outros
+
+~~~
+S={v0}; // nuvem de vértices: vértices que já foram encontrados. populado inicialmente apenas com o vértice de origem)
+D[v0]=0; // valores das menores distâncias encontradas. à medida que for encontrando caminhos menores, vai atualizando. índice 0 é o vértice de origem, que vai ter distância 0
+
+// laço for pra popular a lista de distâncias inicial
+para cada v pertencente a V-{v0}
+  D[v]=L(v0,V);
+
+  enquanto (s <> V){ // V: lista de vértices do grafo
+  escolha o vértice w pertence V-S tal que D[w] seja mínimo
+  
+  e congele o antecessor
+  coloque w em S, isto é, faça S=S U {w}
+    para cada v pertencente V-S faca{
+    D[v]=min(D[v],d[w]+L(w,v))
+    se(d[w]+L(w,v)<D[v])
+
+  D[v].antecessor=w;
+
+  }
+}
+~~~
+- Para saber qual é o vértice seguinte, verificar qual tem a distância menor entre todas as distâncias dos vértices que ainda não foram verificados
