@@ -267,3 +267,13 @@ para cada v pertencente a V-{v0}
 }
 ~~~
 - Para saber qual é o vértice seguinte, verificar qual tem a distância menor entre todas as distâncias dos vértices que ainda não foram verificados
+
+## Algoritmo de A*
+- Custo do vértice atual: f(n) = g(n) + h(n)
+  - g(n) é o caminho total percorrido até o ponto atual (Dijkstra)
+  - h(n) é o valor da heurística do ponto atual até o destino (estimativa de uma distância, tempo, etc. Distância de Manhattan (não pode ser achada na diagonal))
+  - f(n) é o custo total estimado do vértice atual até o destino
+- Distância de Manhattan: distância de um ponto até outro sem passar por diagonais
+- Processo: calcula-se o g(n) e o h(n) e depois calcula-se o f(n)
+
+> e se juntar o A* com o Dijkstra de modo que, quando eu achar um caminho, ele retorne para o ponto de partida (com os valores) daquele ponto e calcule a partir dele os caminhos que ainda nao foram calculados? se baseando na heuristica do ponto de destino atual que ja existe.
