@@ -34,27 +34,16 @@ public class Grafo {
     }
 
     public boolean ehAdjacente(Vertice vertice1, Vertice vertice2) {
-        // primeiro tenta na lista de adjacências do primeiro vértice. se o item Vertice do par for igual ao vertice2 passado, existe adjacência
-        // se ele percorrer tudo e não achar, passa para o próximo "for" e tenta o inverso
         for (Adjacencia adj : vertice1.getAdjacencias()) {
             if (adj.getVertice() == vertice2) {
                 return true;
             }
         }
-        for (Adjacencia adj : vertice2.getAdjacencias()) {
-            if (adj.getVertice() == vertice1) {
-                return true;
-            }
-        }
-        // se não encontrar adjacência em nenhum dos dois vértices, retorna falso
         return false;
     }
 
     public boolean ehDirecionada(Aresta aresta) {
-        if (aresta.getFlagDirecionada()) {
-            return true;
-        }
-        return false;
+        return aresta.getFlagDirecionada();
     }
 
     public void substituirElementoVertice(Vertice vertice, Object elemento) {
