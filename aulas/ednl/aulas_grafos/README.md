@@ -276,4 +276,54 @@ para cada v pertencente a V-{v0}
 - Distância de Manhattan: distância de um ponto até outro sem passar por diagonais
 - Processo: calcula-se o g(n) e o h(n) e depois calcula-se o f(n)
 
-> e se juntar o A* com o Dijkstra de modo que, quando eu achar um caminho, ele retorne para o ponto de partida (com os valores) daquele ponto e calcule a partir dele os caminhos que ainda nao foram calculados? se baseando na heuristica do ponto de destino atual que ja existe.
+## Busca ou caminhamento
+- Caminhamento: Processo sistemático de caminhamento pelos vértices e arestas de um grafo
+- Algoritmo busca geral:
+  - Escolher e marcar vértice inicial
+  - Enquanto existir algum vértice V marcado e incidente a uma aresta(v,w) não explorada faça:
+    – Escolher o vértice v e explorar a aresta (v,w)
+    – Se w é não marcado então marcar w
+
+### Busca em Profundidade
+- Escolhe um vértice, marca como visitado e pega o vértice que está ligado a ele. Para no vértice ligado ao escolhido e explora a partir dele
+- Bom para achar ciclos
+~~~
+Para cada vértice v pertencente a V faça
+    v.marcar=0;//não visitado
+    d(v)=0; t=0;
+Para cada vértice v pertencente a V faça
+    se(v.marcar==0)
+        DFS-VISITA(v);
+
+DFS-VISITA(v){
+    v.marcar=-1;// visitado
+    d(v)=++t;
+    Para cada vértice w pertencente a ADJ[v] faça
+        se (w.marcar==0)
+          DFS-VISITA(w);
+    v.marcar=1; // marcado
+    s(v)=++t;
+}
+~~~
+
+### Busca em largura
+- Exploro o vértice escolhido por completo e passo para o vértice mais antigo que foi encontrado na varredura
+- Usa fila
+~~~
+Para cada vértice v pertencente a V –{S} faça
+    v.marcar=0;//não visitado
+v.marcar=-1;// marcado
+d(s)=0;
+Q={}
+Q.enqueue(S);
+Enquanto(Q<>vazio){
+    v=Q.dequeue();
+    Para cada vértice w adjacente a ADJ[v] faça
+        se(w.marcar==0){
+            d(w)=d(v)+1;
+            w.marcar=-1;
+            Q.enqueue(w);
+        }
+        v.marcar=1; // marcado
+}
+~~~
